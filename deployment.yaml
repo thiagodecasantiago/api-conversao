@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-conversao-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-conversao-app
+  template:
+    metadata:
+      labels:
+        app: api-conversao-app
+    spec:
+      containers:
+        - name: api-conversao-container
+          image: thiagodecasantiago/kb2-api-conversao
+          ports:
+            - containerPort: 8080
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-conversao-service
+spec:
+  type: NodePort
+  selector:
+    app: api-conversao-app
+  ports:
+    - port: 8080
+      nodePort: 30000

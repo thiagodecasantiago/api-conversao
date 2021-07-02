@@ -1,4 +1,4 @@
-FROM node:lts-alpine
+FROM node:14.16.1-alpine3.13
 USER node
 RUN mkdir -p /home/node/api-conversao
 WORKDIR /home/node/api-conversao
